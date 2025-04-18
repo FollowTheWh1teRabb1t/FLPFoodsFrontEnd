@@ -10,6 +10,7 @@ export const Container = styled.div`
   color: #fff;
   position: relative;
 
+  /* ====== Box Presentation ====== */
   .boxPresentation {
     display: flex;
     flex-direction: column;
@@ -24,7 +25,7 @@ export const Container = styled.div`
       width: 150px;
       position: absolute;
       left: 35%;
-      bottom: -122%;;
+      bottom: -122%;
     }
 
     > .cornerLeavesThree {
@@ -42,6 +43,7 @@ export const Container = styled.div`
     }
   }
 
+  /* ====== Dish Presentation ====== */
   .boxDishPresentation {
     display: flex;
     align-items: center;
@@ -60,21 +62,23 @@ export const Container = styled.div`
       padding: 1.25rem;
     }
 
-    .cornerLeaves {
-      width: 200px;
-      position: absolute;
-      left: 0;
-      bottom: -40px;
-    }
-
+    .cornerLeaves,
     .cornerLeavesTwo {
       width: 200px;
       position: absolute;
-      right: 0;
       bottom: -40px;
+    }
+
+    .cornerLeaves {
+      left: 0;
+    }
+
+    .cornerLeavesTwo {
+      right: 0;
     }
   }
 
+  /* ====== Menu Box ====== */
   .boxMenu {
     display: flex;
     align-items: center;
@@ -88,21 +92,17 @@ export const Container = styled.div`
       font-size: 2.5rem;
     }
 
-    .dishesArea {
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
+    .dishesArea,
     .beverageArea {
       display: flex;
       flex-direction: row;
-      gap: 1.25rem;
-      margin-top: 2rem;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 1.25rem;
+    }
+
+    .beverageArea {
+      margin-top: 2rem;
 
       .explosionImg,
       .flyingLeaves {
@@ -123,6 +123,7 @@ export const Container = styled.div`
     }
   }
 
+  /* ====== Services Box ====== */
   .servicesBox {
     display: flex;
     align-items: center;
@@ -165,13 +166,14 @@ export const Container = styled.div`
     }
   }
 
+  /* ====== Reviews Box ====== */
   .boxReviews {
     width: 90%;
     max-width: 1024px;
     display: flex;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
-    flex-direction: column;
     padding: 20px;
     margin: 15.5rem auto 22.7rem;
     font-family: 'Merriweather';
@@ -181,21 +183,18 @@ export const Container = styled.div`
       font-size: 2.5rem;
     }
 
-    .whiteFlowers,
-    .rosePetal {
+    .whiteFlowers {
       position: absolute;
       width: 200px;
-    }
-
-    .whiteFlowers {
       right: 0;
       bottom: -100px;
     }
 
     .rosePetal {
+      position: absolute;
+      width: 250px;
       left: 0;
       bottom: -100px;
-      width: 250px;
     }
   }
 
@@ -243,42 +242,25 @@ export const Container = styled.div`
     }
   }
 
-
+  /* ====== Media Queries ====== */
 
   @media (max-width: 1440px) {
-    
-    
-    .boxPresentation {
-        position: relative;
-        .twoLeaves {
-            top: 90%;
-        }
+    .boxPresentation .twoLeaves {
+      top: 90%;
     }
 
     .boxReviews {
-        position: relative;
+      .rosePetal {
+        left: -20%;
+      }
 
-        .rosePetal {    
-            left: -20%;    
-        }
-
-        .whiteFlowers {
-            right:  -20%;
-        }
+      .whiteFlowers {
+        right: -20%;
+      }
     }
   }
 
   @media (max-width: 1024px) {
-
-    .servicesBox {
-        position: relative;
-        .goldenFlower {
-            width: 150px;
-            top: 8%;
-            left: 4%;
-        }
-    }
-
     .boxPresentation {
       font-size: 1.8rem;
 
@@ -298,19 +280,17 @@ export const Container = styled.div`
       }
     }
 
-    .boxDishPresentation {
-      > h2 {
-        font-size: 2.5rem;
-      }
+    .boxDishPresentation > h2 {
+      font-size: 2.5rem;
+    }
 
-      .lambImg {
-        width: 22rem;
-      }
+    .lambImg {
+      width: 22rem;
+    }
 
-      .cornerLeaves,
-      .cornerLeavesTwo {
-        width: 150px;
-      }
+    .cornerLeaves,
+    .cornerLeavesTwo {
+      width: 150px;
     }
 
     .boxMenu h2 {
@@ -325,8 +305,12 @@ export const Container = styled.div`
       font-size: 1rem;
     }
 
-    .goldenFlower {
+    .servicesBox {
+      .goldenFlower {
       width: 150px;
+      top: 8%;
+      left: 4%;
+    }
     }
 
     .boxSquares > p {
@@ -341,67 +325,47 @@ export const Container = styled.div`
       font-size: 1.2rem;
     }
 
-
     .boxReviews {
-        position: relative; 
+      .rosePetal {
+        left: -5%;
+        top: 90%;
+      }
 
-        .rosePetal {
-            left: -5%;
-            top: 90%;
-        }
-
-        .whiteFlowers {
-            right: -5%;
-            top: 98%;
-        }
+      .whiteFlowers {
+        right: -5%;
+        top: 98%;
+      }
     }
   }
 
   @media (max-width: 768px) {
-
-    .boxPresentation {
-        position: relative;
-
-        > h1 {
-            font-size: 2.6rem;
-        }
-
-        > .twoLeaves {
-            width: 80px;
-            left: 32%;
-        }
-
-        .cornerLeavesThree {
-            width: 180px;
-        }
-
-        .powderImg {
-            right: 1%;
-            width: 180px;
-        }
+    .boxPresentation > h1 {
+      font-size: 2.6rem;
     }
 
-    .boxDishPresentation {
-        position: relative;
-
-        > h2 {
-            font-size: 2.2rem;
-        }
+    .twoLeaves {
+      width: 80px;
+      left: 32%;
     }
 
+    .cornerLeavesThree {
+      width: 150px;
+    }
 
-    .servicesBox {
-        position: relative;
+    .powderImg {
+      right: 1%;
+      width: 180px;
+    }
 
-        .goldenFlower {
-            top: 1%;
-            width: 100px;
-        }
+    .boxDishPresentation > h2 {
+      font-size: 2.2rem;
+    }
+
+    .servicesBox .goldenFlower {
+      top: 1%;
+      width: 100px;
     }
   }
-
-
-
 
   @media (max-width: 600px) {
     .boxPresentation {
@@ -421,24 +385,18 @@ export const Container = styled.div`
       }
     }
 
-    .boxDishPresentation
-     > h2 {
+    .boxDishPresentation > h2 {
       font-size: 1.2rem;
     }
 
-    .cornerLeaves {
-        top: 40%;
-    }
-
-
+    .cornerLeaves,
     .cornerLeavesTwo {
-        top: 40%;
-        
+      top: 40%;
     }
+
     .lambImg {
       width: 18rem;
     }
-
 
     .boxMenu h2 {
       font-size: 1.5rem;
@@ -469,94 +427,112 @@ export const Container = styled.div`
       width: 150px;
     }
 
-    .servicesBox {
-        .goldenFlower {
-            width: 80px;
-        }
+    .servicesBox .goldenFlower {
+      width: 80px;
     }
   }
 
   @media (max-width: 425px) {
-  .boxPresentation {
-    > h1 {
+
+    .boxDishPresentation {
+      .lambImg {
+        width: 200px;
+      } 
+    }
+
+    .boxPresentation > h1 {
       font-size: 1.5rem;
     }
 
     .cornerLeavesThree {
-        width: 80px;
+      width: 70px;
     }
 
     .powderImg {
+      width: 70px;
+    }
+
+    .boxDishPresentation {
+      text-align: center;
+
+      > .cornerLeavesTwo,
+      > .cornerLeaves {
+        top: 95%;
         width: 90px;
+      }
+
+      >.cornerLeavesTwo {
+        right: 5%;
+      }
+      >.cornerLeaves {
+        left: 5%;
+      }
+    }
+
+    .servicesBox .goldenFlower {
+      width: 40px;
+    }
+
+    .servicesBox {
+      .boxSquares p {
+      padding: 4px;
+      font-size: 0.5rem;
+    }
     }
   }
-}
 
- .boxDishPresentation {
-    text-align: center;
-
-    > .cornerLeavesTwo {
-        top: 70%;
-        width: 50px;
-    }
-
-    > .cornerLeaves {
-        top: 70%;
-        width: 50px;
-    }
- } 
- 
- .servicesBox {
-    .goldenFlower {
-        width: 50px;
-    }
- }
-
-
- @media (max-width: 375px) {
-    
+  @media (max-width: 375px) {
     .boxPresentation {
+      > .powderImg {
+        width: 60px;
+      }
 
-        > .powderImg {
-            width: 60px;
-        }
+      > .cornerLeavesThree {
+        width: 60px;
+      }
+    }
 
-        > .cornerLeavesThree {
-            width: 60px;
-        }
 
+    .boxDishPresentation {
+      > .cornerLeavesTwo,
+      > .cornerLeaves {
+        top: 95%;
+        width: 50px;
+      }
+    }
+
+    .servicesBox .goldenFlower {
+      width: 40px;
+      left: 1%;
     }
 
     .servicesBox {
-
-        > .goldenFlower {
-            width: 40px;
-            left: 1%;
+        .boxSquares p {
+          padding: 3px;
+          font-size: 0.4rem;
         }
     }
- 
- }
+  }
 
-
- @media (max-width: 320px) {
-
+  @media (max-width: 320px) {
     .boxPresentation {
+      > .powderImg {
+        width: 40px;
+      }
 
-> .powderImg {
-    width: 40px;
-}
+      > .cornerLeavesThree {
+        width: 40px;
+      }
+    }
 
-> .cornerLeavesThree {
-    width: 40px;
-}
-
-}
+    .servicesBox .goldenFlower {
+      display: none;
+    }
 
     .servicesBox {
-
-        > .goldenFlower {
-            display: none;
-        }
-}
- }
+      .boxSquares p {
+        font-size: 0.3rem;
+      }
+    }
+  }
 `;
