@@ -1,9 +1,9 @@
 import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '@/services/api'; // ← aqui
 import { Container, Form, Input, Button, Title, BackButton } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
-import { useAuth } from '@/context/authContext';  // Importando o contexto
+import { useAuth } from '@/context/authContext';  
 import leavesLogin1 from '@/assets/leavesLogin1.png';
 import leavesLogin2 from '@/assets/leavesLogin2.png';
 import leavesLogin3 from '@/assets/leavesLogin3.png';
@@ -14,7 +14,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
-    const { login } = useAuth();  // Agora a função login recebe o token e a role
+    const { login } = useAuth();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ export default function Login() {
         }
 
         try {
-            const response = await axios.post("http://localhost:3333/api/auth/login", {
+            const response = await api.post("/api/auth/login", {
                 email,
                 password
             });
@@ -37,18 +37,14 @@ export default function Login() {
                 return;
             }
 
-            login(token, role); // Salva o token e a role no contexto
+            login(token, role);
+            api.defaults.headers.common["Authorization"] = `Bearer ${token}`; // opcional
 
-            // Opcional: redirecionar com base na role
-            if (role === 'admin') {
-                navigate('/');
-            } else {
-                navigate('/');
-            }
-
+            navigate('/');
         } catch (error: unknown) {
-            if (axios.isAxiosError(error)) {
-                setError(error.response?.data?.error || 'Erro ao fazer login.');
+            if (error && typeof error === "object" && "response" in error) {
+                const err = error as any;
+                setError(err.response?.data?.error || 'Erro ao fazer login.');
             } else {
                 setError('Erro desconhecido.');
             }

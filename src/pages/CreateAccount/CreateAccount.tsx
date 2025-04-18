@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '@/services/api'; // ← aqui
 import { Container, Form, Input, Button, Title, BackButton } from './styles';
 import { FiArrowLeft } from 'react-icons/fi';
-import { FormEvent } from 'react';
 import leavesCreate1 from '@/assets/leavesCreate1.png';
 import leavesCreate2 from '@/assets/leavesCreate2.png';
 import leavesCreate3 from '@/assets/leavesCreate3.png';
 import leavesCreate4 from '@/assets/leavesCreate4.png';
 
 export default function CreateAccount() {
-    const [name, setName] = useState<string>('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,7 +25,7 @@ export default function CreateAccount() {
         }
 
         try {
-            await axios.post("http://localhost:3333/api/auth/register", {
+            await api.post("/api/auth/register", {
                 name,
                 email,
                 password,
@@ -34,8 +33,9 @@ export default function CreateAccount() {
             });
             navigate('/login');
         } catch (error: unknown) {
-            if (axios.isAxiosError(error)) {
-                setError(error.response?.data?.error || 'Erro ao cadastrar');
+            if (error && typeof error === "object" && "response" in error) {
+                const err = error as any;
+                setError(err.response?.data?.error || 'Erro ao cadastrar');
             } else {
                 setError('Erro desconhecido');
             }
@@ -58,28 +58,28 @@ export default function CreateAccount() {
                 <Input
                     type="text"
                     placeholder="Nome"
-                    value={name || ""}
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
                 <Input
                     type="email"
                     placeholder="Email"
-                    value={email || ""}
+                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
                 <Input
                     type="password"
                     placeholder="Senha"
-                    value={password || ""}
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
                 <Input
                     type="password"
                     placeholder="Confirmar Senha"
-                    value={confirmPassword || ""}
+                    value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
@@ -91,3 +91,4 @@ export default function CreateAccount() {
         </Container>
     );
 }
+    
